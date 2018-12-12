@@ -20,35 +20,21 @@ def list_files():
 
   response = requests.get(uri, params=params)
 
+  all_files = json.loads(response.text)['files']
+
+  ### How many files did we fetch?
+  print (len(all_files))
+
+  ### Print the whole bloody array of objects (if you want to see all the key/value pairs)
+  # print(all_files)
+
+  ### Let's have a closer look at what we got 
+  for single_file in all_files:
+    id = [single_file['id']]
+    name = [single_file['url_private']]
+    timestamp = [single_file['timestamp']]
+    print(id, name, timestamp)
+
   return json.loads(response.text)['files']
 
-
-def delete_files(file_ids):
-
-  count = 0
-
-  num_files = len(file_ids)
-
-  for file_id in file_ids:
-
-    count = count + 1
-
-    params = {
-
-      'token': token,
-
-      'file': file_id
-
-      }
-
-    uri = 'https://slack.com/api/files.delete'
-
-    response = requests.get(uri, params=params)
-
-    print (count, "of", num_files, "-", file_id, json.loads(response.text)['ok'])
-
-files = list_files()
-
-file_ids = [f['id'] for f in files]
-
-delete_files(file_ids)
+list_files()
