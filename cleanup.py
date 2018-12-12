@@ -6,9 +6,9 @@ import json
 
 from secret.token.secret import token
 
-#Delete files older than one month:
+#Delete files older than six months:
 
-ts_to = int(time.time()) - 30 * 24 * 60 * 60
+ts_to = int(time.time()) - 180 * 24 * 60 * 60
 
 def list_files():
 
@@ -26,12 +26,14 @@ def list_files():
 
   response = requests.get(uri, params=params)
 
-  #print (len(json.loads(response.text)['files'])) - returns 1000
   payload = json.loads(response.text)['files']
 
-  print(payload[0]);
+  # How many do we have?
+  print (len(payload) 
+
+  # Let's have a look at the names
   name = [f['url_private'] for f in payload]
-  #print(name)
+  print(name)
   # return json.loads(response.text)['files']
 
 
