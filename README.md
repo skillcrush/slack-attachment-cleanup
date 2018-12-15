@@ -13,6 +13,10 @@
 
 `python test-first.py > data.txt`
 
+Or you can just run the script and see the result in the Terminal, if you prefer:
+
+`python text-first.py`
+
 4- `data.txt` now contains the ids, names and timestamps of all the files that are slated for deletion. If you want to view timestamps in a human readable way, use [www.unixtimestamp.com](https://www.unixtimestamp.com/index.php) or similar.
 
 5- If you are happy with the result, open `cleanup.py` and modify the `ts_to` and `count` variable to match those in the `test-first.py` file.
