@@ -6,7 +6,7 @@ import os
 token = os.environ['STUDENT_COMM_SLACK_TOKEN']
 
 ### Grab files older than six months - change as necessary
-ts_to = int(time.time()) - 180 * 24 * 60 * 60
+ts_to = int(time.time()) - 100 * 24 * 60 * 60
 
 def list_files():
 

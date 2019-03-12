@@ -5,15 +5,15 @@ import os
 
 token = os.environ['STUDENT_COMM_SLACK_TOKEN']
 
-### Grab files older than six months - change as necessary
-ts_to = int(time.time()) - 180 * 24 * 60 * 60
+### Grab files older than three months - change as necessary
+ts_to = int(time.time()) - 90 * 24 * 60 * 60
 
 def list_files():
 
   params = {
     'token': token,
     'ts_to': ts_to,
-    'count': 10 # Number of attachments to delete - change as necessary - recommend fewer than 200 at a time to avoid timeout
+    'count': 100 # Number of attachments to delete - change as necessary - recommend fewer than 200 at a time to avoid timeout
   }
 
   uri = 'https://slack.com/api/files.list'
