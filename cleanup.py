@@ -19,8 +19,12 @@ def list_files():
   uri = 'https://slack.com/api/files.list'
 
   response = requests.get(uri, params=params)
+  
+  files = json.loads(response.text)['files']
 
-  return json.loads(response.text)['files']
+  file_ids = [f['id'] for f in files]
+  
+  return file_ids
 
 
 def delete_files(file_ids):
@@ -31,14 +35,11 @@ def delete_files(file_ids):
 
   for file_id in file_ids:
 
-    count = count + 1
+    count += 1
 
     params = {
-
       'token': token,
-
       'file': file_id
-
       }
 
     uri = 'https://slack.com/api/files.delete'
@@ -47,8 +48,5 @@ def delete_files(file_ids):
 
     print (count, "of", num_files, "-", file_id, json.loads(response.text)['ok'])
 
-files = list_files()
-
-file_ids = [f['id'] for f in files]
-
-delete_files(file_ids)
+# Files, be gone!
+delete_files(list_files())

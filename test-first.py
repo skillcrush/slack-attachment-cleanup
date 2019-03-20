@@ -6,7 +6,7 @@ import os
 token = os.environ['STUDENT_COMM_SLACK_TOKEN']
 
 ### Grab files older than six months - change as necessary
-ts_to = int(time.time()) - 100 * 24 * 60 * 60
+ts_to = int(time.time()) - 90 * 24 * 60 * 60
 
 def list_files():
 
@@ -22,8 +22,9 @@ def list_files():
 
   all_files = json.loads(response.text)['files']
 
+  number_of_files = len(all_files)
   ### How many files did we fetch?
-  print (len(all_files))
+  print ( "%d files will be deleted." % (number_of_files))
 
   ### Print the whole bloody array of objects (if you want to see all the key/value pairs)
   # print(all_files)
@@ -33,7 +34,8 @@ def list_files():
     id = [single_file['id']]
     name = [single_file['url_private']]
     timestamp = [single_file['timestamp']]
-    print(id, name, timestamp)
+    readableTime = time.strftime("%D %H:%M", time.localtime(timestamp[0]))
+    print(id, name, readableTime)
 
   return json.loads(response.text)['files']
 
