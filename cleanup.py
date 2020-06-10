@@ -1,19 +1,22 @@
-import requests
 import time
+import requests
 import json
 import os
 
-token = os.environ['STUDENT_COMM_SLACK_TOKEN']
+from dotenv import load_dotenv
+load_dotenv()
+
+token = os.getenv('STUDENT_COMM_SLACK_TOKEN')
 
 ### Grab files older than three months - change as necessary
 ts_to = int(time.time()) - 90 * 24 * 60 * 60
 
-def list_files():
+def list_file_ids():
 
   params = {
     'token': token,
     'ts_to': ts_to,
-    'count': 100 # Number of attachments to delete - change as necessary - recommend fewer than 200 at a time to avoid timeout
+    'count': 100 # Max number of attachments to delete - change as necessary - recommend fewer than 200 at a time to avoid timeout
   }
 
   uri = 'https://slack.com/api/files.list'
@@ -49,4 +52,4 @@ def delete_files(file_ids):
     print (count, "of", num_files, "-", file_id, json.loads(response.text)['ok'])
 
 # Files, be gone!
-delete_files(list_files())
+delete_files(list_file_ids())
