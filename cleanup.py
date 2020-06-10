@@ -22,8 +22,10 @@ def list_file_ids():
   uri = 'https://slack.com/api/files.list'
 
   response = requests.get(uri, params=params)
-  
   files = json.loads(response.text)['files']
+
+  # Have a look at the keys of the first dictionnary entry in the files list
+  print([f.keys() for f in files[0:1]])
 
   file_ids = [f['id'] for f in files]
   
@@ -51,5 +53,7 @@ def delete_files(file_ids):
 
     print (count, "of", num_files, "-", file_id, json.loads(response.text)['ok'])
 
+
 # Files, be gone!
-delete_files(list_file_ids())
+if __name__ == '__main__':
+  delete_files(list_file_ids())
