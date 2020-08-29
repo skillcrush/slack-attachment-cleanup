@@ -3,9 +3,12 @@ import time
 import json
 import os
 
-token = os.environ['STUDENT_COMM_SLACK_TOKEN']
+from dotenv import load_dotenv
+load_dotenv()
 
-### Grab files older than six months - change as necessary
+token = os.getenv('STUDENT_COMM_SLACK_TOKEN')
+
+### Grab files older than three months - change as necessary
 ts_to = int(time.time()) - 90 * 24 * 60 * 60
 
 def list_files():

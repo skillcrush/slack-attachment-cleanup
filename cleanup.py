@@ -34,13 +34,7 @@ def list_file_ids():
 
 def delete_files(file_ids):
 
-  count = 0
-
-  num_files = len(file_ids)
-
-  for file_id in file_ids:
-
-    count += 1
+  for count, file_id in enumerate(file_ids, 1):
 
     params = {
       'token': token,
@@ -51,7 +45,7 @@ def delete_files(file_ids):
 
     response = requests.get(uri, params=params)
 
-    print (count, "of", num_files, "-", file_id, json.loads(response.text)['ok'])
+    print (f'{count} of {len(file_ids)}, -, {file_id} {json.loads(response.text)["ok"]}')
 
 
 # Files, be gone!

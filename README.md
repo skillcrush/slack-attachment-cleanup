@@ -15,7 +15,7 @@
 
 Or you can just run the script and see the result in the Terminal, if you prefer:
 
-`python text-first.py`
+`python test-first.py`
 
 4- `data.txt` now contains the ids, names and timestamps of all the files that are slated for deletion. If you want to view timestamps in a human readable way, use [www.unixtimestamp.com](https://www.unixtimestamp.com/index.php) or similar.
 
